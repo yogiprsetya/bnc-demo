@@ -16,11 +16,12 @@
     "jsx": "preserve",
     "baseUrl": "./",
     "paths": {
-      "component/*": ["./components/*"],
-      "core/*": ["./components/Core/*"],
-      "layout/*": ["./components/Layout/*"],
-      "view/*": ["./components/View/*"],
-      "utils/*": ["./utils/*"]
+      "component/*": ["components/*"],
+      "core/*": ["components/Core/*"],
+      "layout/*": ["components/Layout/*"],
+      "view/*": ["components/View/*"],
+      "utils/*": ["utils/*"],
+      "hook/*": ["hook/*"]
     },
     "incremental": true
   },
