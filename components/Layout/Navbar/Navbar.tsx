@@ -1,12 +1,43 @@
-import React, { useState } from "react";
-import { Layout, Row, Col, Menu, Drawer, Button } from "antd";
+import React, { useEffect, useState } from "react";
+import {  Drawer, Button } from "antd";
 import MenuLeft from "./MenuLeft";
 import MenuRight from "./MenuRight";
 import style from "./Navbar.module.scss";
 import { MenuOutlined } from "@ant-design/icons";
+import { useTranslation } from "react-i18next";
+import { setLocalStorage } from "utils/localStorage";
 
 const Navbar = () => {
+  const { i18n } = useTranslation();
   const [showDrawer, setShowDrawer] = useState(false);
+  const [languageBoolean, setLanguageBoolean] = useState(false);
+
+  useEffect(() => {
+    switch (i18n.language) {
+      case "en":
+        setLanguageBoolean(false);
+        break;
+      case "id":
+        setLanguageBoolean(true);
+        break;
+    }
+  }, [i18n.language]);
+
+  const onChangeLanguage = (values: boolean) => {
+    let language : string;
+    switch (values) {
+      case false:
+        setLanguageBoolean(false);
+        language = "en"
+        break;
+      case true:
+        language = "id";
+        setLanguageBoolean(true);
+        break;
+    }
+    i18n.changeLanguage(language);
+    setLocalStorage("language", language);
+  };
 
   return (
     <nav className={style.menubar}>
@@ -15,7 +46,10 @@ const Navbar = () => {
       <div className={style.menubar__main}>
         <div className={style.menubar__main_menu}>
           <MenuLeft />
-          <MenuRight />
+          <MenuRight
+            languageBoolean={languageBoolean}
+            onChangeLanguage={onChangeLanguage}
+          />
         </div>
 
         <Button
@@ -33,7 +67,10 @@ const Navbar = () => {
           visible={showDrawer}
         >
           <MenuLeft />
-          <MenuRight />
+          <MenuRight
+            languageBoolean={languageBoolean}
+            onChangeLanguage={onChangeLanguage}
+          />
         </Drawer>
       </div>
     </nav>

@@ -3,12 +3,14 @@ import { Typography, Row, Col, Spin } from "antd";
 import MovieList from "layout/MovieList";
 import { Fragment, useEffect, useState, useRef } from "react";
 import { MoviesStateFn } from "./state";
+import { useTranslation } from "react-i18next";
 
 const List = () => {
   const loader = useRef(null);
   const { load, movies } = MoviesStateFn();
   const [dummyPage, setDummyPage] = useState(0);
   const [movieList, setMovieList] = useState<any>([]);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const options = {
@@ -42,8 +44,7 @@ const List = () => {
   return (
     <Fragment>
       <Typography.Title level={2} className="mb-10">
-        Add a paragraph for introduction text (hardcoded) that can be translated
-        using your translation logic
+       {t('common:list.heading')}
       </Typography.Title>
 
       <MovieList load={load} movies={movieList} />

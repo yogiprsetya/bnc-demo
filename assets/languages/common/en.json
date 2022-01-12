@@ -1,0 +1,7 @@
+{
+  "list": {
+    "heading":"Add a paragraph for introduction text (hardcoded) that can be translated using your translation logic",
+    "about_movie":"About the movie"
+  },
+  "button": {"back":"Back"}
+}

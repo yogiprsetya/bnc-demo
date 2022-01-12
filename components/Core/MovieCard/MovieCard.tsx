@@ -5,12 +5,14 @@ import { MovieType } from "./interface";
 import { DeleteFilled } from "@ant-design/icons";
 import style from "./MovieCard.module.scss";
 import { getLocalStorage, setLocalStorage } from "utils/localStorage";
+import { useTranslation } from "react-i18next";
 // import { MoviesStateFn } from "view/Favorite/state";
 
 const { Meta } = Card;
 
 const MovieCard = (props: MovieType): ReactElement => {
   // const { getData } = MoviesStateFn();
+  const { t } = useTranslation();
 
   const removeFavorite = () => {
     const saved = getLocalStorage("favorite");
@@ -36,7 +38,7 @@ const MovieCard = (props: MovieType): ReactElement => {
         }
         description={
           <Fragment>
-            <Typography>About the movie</Typography>
+            <Typography>{t("common:list.about_movie")}</Typography>
 
             <Space>
               {props.isSaved && (

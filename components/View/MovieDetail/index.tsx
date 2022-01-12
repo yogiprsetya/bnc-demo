@@ -9,10 +9,12 @@ import {
   HeartOutlined,
   HeartFilled,
 } from "@ant-design/icons";
+import { useTranslation } from "react-i18next";
 
 const Index = () => {
   const router = useRouter();
   const { load, movie, isSaved, saveMovie } = MovieStateFn();
+  const { t } = useTranslation();
 
   return (
     <Fragment>
@@ -34,7 +36,7 @@ const Index = () => {
               onClick={() => router.back()}
               icon={<ArrowLeftOutlined />}
             >
-              Back
+              {t("common:button.back")}
             </Button>
 
             <Button
